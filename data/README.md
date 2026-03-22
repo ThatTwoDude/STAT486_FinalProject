@@ -25,26 +25,26 @@ To maintain reproducibility and keep the repository lightweight, raw datasets ar
 You will need a Kaggle account in order to access the data. 
 * You can create an account at [kaggle.com](https://www.kaggle.com). 
 * Then you must navigate to the current [march madness competition](https://www.kaggle.com/competitions/march-machine-learning-mania-2026/data)
-* You must click on Join Competition, it will require you to enter in your phone number for multi-factor authentication, but after that you will have access to the data
+* You must click on Join Competition, it will require you to enter in your phone number for multi-factor authentication, but after that you will have access to the data.
+* You can else access the data here by navigating to the data tab and downloading all, or download it programatically through the following steps
 
-### 2. Setup Kaggle API Authentication
-You will need a Kaggle account and an API token to download the data programmatically.
-* Go to your Kaggle account settings and click **"Create New Token"** to download a `kaggle.json` file.
-* Place the `kaggle.json` file in your local `~/.kaggle/` directory (Mac/Linux) or `C:\Users\<Windows-username>\.kaggle\` (Windows).
-* Secure the file permissions (Mac/Linux only): `chmod 600 ~/.kaggle/kaggle.json`
-
-### 3. Install the Kaggle CLI
+### 2. Install the Kaggle CLI
 Ensure the Kaggle package is installed in your Python environment:
 `pip install kaggle`
 
+### 4. Setup Kaggle API Authentication
+You will need a Kaggle account and an API token to download the data programmatically.
+* Go to your Kaggle [account settings](https://www.kaggle.com/settings) and click **"Create New Token"** under the **"API"** section.
+* Create it as an environment variable, by running the following command:
+`export KAGGLE_API_TOKEN=xxxxxxxxxxxxxx # Copied from the settings UI`
+
 ### 4. Download the Dataset
-Navigate to the root of this project in your terminal and run the following commands to download and extract the dataset directly into the `data/raw/` folder:
+We have provided a Python script to handle downloading and extracting the dataset programmatically, bypassing any system PATH issues. 
 
-`cd data`
-`kaggle competitions download -c march-machine-learning-mania-2026` 
-`unzip ncaa-basketball-dataset.zip -d raw/`
+Navigate to the `src/` directory in your terminal and run:
+`python download_data.py`
 
-*(Note: If using a specific year's competition data, replace the dataset slug in the download command with the appropriate Kaggle competition identifier).*
+This will authenticate your Kaggle account, download the 2026 competition data, extract all CSVs into the `data/raw/` folder, and clean up the leftover zip file.
 
 ## Directory Structure
 * `raw/`: Unaltered, original CSV files downloaded directly from the source. **Do not manually edit these files.**
