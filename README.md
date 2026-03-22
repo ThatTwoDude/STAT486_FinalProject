@@ -1,5 +1,4 @@
 # STAT486_FinalProject
-STAT 486 Final Project
 
 # The Cinderella Detector: Predicting NCAA Upsets via Anomaly Detection
 
