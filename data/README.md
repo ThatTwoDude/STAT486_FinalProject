@@ -32,7 +32,7 @@ You will need a Kaggle account in order to access the data.
 Ensure the Kaggle package is installed in your Python environment:
 `pip install kaggle`
 
-### 4. Setup Kaggle API Authentication
+### 3. Setup Kaggle API Authentication
 You will need a Kaggle account and an API token to download the data programmatically.
 * Go to your Kaggle [account settings](https://www.kaggle.com/settings) and click **"Create New Token"** under the **"API"** section.
 * Create it as an environment variable, by running the following command:
