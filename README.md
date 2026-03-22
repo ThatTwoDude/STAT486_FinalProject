@@ -58,9 +58,9 @@ You will need a Kaggle account and an API token to download the data programmati
 `export KAGGLE_API_TOKEN=xxxxxxxxxxxxxx # Copied from the settings UI`
 
 4. Download the Dataset
-We have provided a Python script to handle downloading and extracting the dataset programmatically, bypassing any system PATH issues. 
+* We have provided a Python script to handle downloading and extracting the dataset programmatically, bypassing any system PATH issues. 
 
-Navigate to the `src/` directory in your terminal and run:
+* Navigate to the `src/` directory in your terminal and run:
 `python download_data.py`
 
-This will authenticate your Kaggle account, download the 2026 competition data, extract all CSVs into the `data/raw/` folder, and clean up the leftover zip file.
+* This will authenticate your Kaggle account, download the 2026 competition data, extract all CSVs into the `data/raw/` folder, and clean up the leftover zip file.
