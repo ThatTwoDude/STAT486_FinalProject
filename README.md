@@ -5,4 +5,4 @@ STAT 486 Final Project
 
 /progress - this contains our proposal
 
-/src
+/src - this includes a script allowing us to download the data
