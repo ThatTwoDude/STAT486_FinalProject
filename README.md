@@ -14,8 +14,6 @@ Every year, the NCAA March Madness tournament captivates fans with unexpected "C
 
 By utilizing unsupervised anomaly detection on regular-season advanced metrics, we aim to identify under-seeded teams that possess the statistical profile of a powerhouse. Feeding these anomaly scores into a supervised classification model allows us to teach the model to look beyond a simple "12 vs. 5 seed" difference and recognize underlying elite performance profiles. 
 
-*Disclaimer: This project is for academic demonstration and educational purposes only. It is not intended, nor endorsed, for financial sports betting.*
-
 ### Project Question
 Can unsupervised anomaly detection of regular-season advanced metrics successfully identify underlying elite performance profiles in low-seeded NCAA basketball teams, and does integrating these anomaly scores improve the predictive accuracy of supervised upset classification models during the NCAA Tournament?
 
@@ -31,7 +29,7 @@ We hypothesize that an Anomaly Score—generated via unsupervised learning (Isol
 **Ethical and Legal Considerations:**
 There is no Personally Identifiable Information (PII) at risk, as the data only involves public figures (student-athletes and universities) and their on-court statistics. 
 
-**License and Usage Notes (CRITICAL):**
+**License and Usage Notes:**
 Per the Kaggle Competition Rules, this dataset is available for academic research and education. However, **we are strictly prohibited from redistributing the data to anyone who has not formally agreed to the competition rules.** To comply with these rules and maintain a lightweight repository, **no raw or processed data files are tracked in this GitHub repository.** Anyone wishing to reproduce this project must independently acquire the data via Kaggle using the instructions below.
 
 ---
