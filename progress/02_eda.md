@@ -64,7 +64,7 @@ Correlation analysis helps identify which regular-season and pre-tournament vari
 
 ![alt text](../assets/correlation_matrix.png)
 
-### Regular Season vs. Tornment Expectations
+### Regular Season vs. Tournament Expectations
 
 The next plot compares regular-season strength by using their `AvgScoreDiff` with tournament expectation `SeedNum`. This helps show whether lower-seeded teams that become Cinderella teams already looked stronger than their seeds suggested before the tournament started.
 
