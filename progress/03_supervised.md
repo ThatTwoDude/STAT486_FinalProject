@@ -4,10 +4,35 @@ Our md and ipnyb notebook explores whether regular-season team performance, tour
 
 ## 1. Research Question and DataSet Overview
 
-**Research Question:** Can unsupervised anomaly detection of regular-season advanced metrics successfully identify underlying elite performance profiles in low-seeded NCAA basketball teams, and does integrating these anomaly scores improve the predictive accuracy of supervised upset classification models during the NCAA Tournament?
+**Project Goal:** Can supervised machine learning models identify NCAA "Cinderella" teams by analyzing regular-season anomaly scores and "Expectation Gaps" among low-seeded tournament candidates?
 
-**Dataset Overview:** The data used in this project is sourced from [Kaggle’s March Machine Learning Mania Competition](https://www.kaggle.com/competitions/march-machine-learning-mania-2026/data), which provides historical NCAA men’s basketball regular-season results, tournament seeds, tournament outcomes, and ranking information for predictive modeling. 
+By restricting our dataset strictly to Cinderella candidates (Seeds 10-16) and engineered features comparing them to tournament averages, this phase attempts to detect the statistical DNA of extreme underdogs that win 2+ tournament games.
 
-**Ethical & Legal Considerations:** To respect Kaggle’s competition rules, this repository does not redistribute the raw source files and instead assumes that users download the data themselves through Kaggle before running the analysis. From an ethics standpoint, the dataset contains team- and game-level sports records rather than personally identifying information, so privacy concerns are minimal. As a result, the main legal and ethical responsibility in this project is proper use of the competition data and transparent, reproducible analysis rather than protection of sensitive personal data
+## 2. Supervised Modeling Choices
 
-## Supervised Modeling Choices
+To strictly prevent data leakage, our unsupervised Isolation_Score was fit exclusively on the training set, and standard scaling was applied inside our cross-validation pipelines. Because true Cinderellas only make up 7.79% of our candidate pool (53 out of 680), standard accuracy was discarded in favor of Precision-Recall AUC (PR-AUC) and F1-Score.
+
+| **Model Type** | **Key Hyperparameters Explored** | **Validation Setup** | **PR-AUC** |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| **Random Forest (Baseline) | `max_depth`: [5, 10] <br> `n_estimators`: 100 <br> `class_weight`: 'balanced' | Stratified 5-Fold CV | 0.1334 |
+| **XGBoost Classifier | `max_depth`: [2, 3] <br> `learning_rate`: [0.01, 0.05] <br> `colsample_bytree`: [0.5, 0.7] <br> `gamma`: [0.1, 0.5, 1.0] | Stratified 5-Fold CV | 0.1681 |
+
+*Note: Further threshold tuning on the XGBoost model (shifting the probability threshold to 0.6943) yielded a final F1-score of 0.2953 on the training set.*
+
+## 3. Model Comparison Selection
+
+Insights & Trends: The XGBoost model vastly outperformed the Random Forest baseline across all meaningful metrics, particularly in Recall (0.6861 vs. 0.3056). While Random Forest struggled to isolate true positives despite balanced class weights, XGBoost successfully identified over two-thirds of historical Cinderellas.
+
+Best Model: XGBoost Classifier. Tree-based boosting naturally handles complex, non-linear interactions (e.g., combining a poor SeedNum with a high Rank_vs_TourneyAvg).
+
+Challenges Faced: The "Small Data" trap. By filtering our dataset down to only Cinderella candidates, our sample size shrank to just 680 rows. Early XGBoost iterations overfit this small dataset heavily. We overcame this by introducing aggressive regularization: severely limiting tree depth (max_depth=2), pruning useless branches (gamma=0.1), and randomly dropping features during tree construction (colsample_bytree=0.7) to break the dominance of the SeedNum variable.
+
+## 4. Explainability and Interpretability
+
+![alt text](../assets/shap_summary.png)
+
+**Intepretation:** Both our SHAP summary plot and XGBoost Feature Importance outputs reveal that while SeedNum remains highly predictive, Expectation Gap metrics successfully drove the model's logic. The second most important feature was Rank_vs_TourneyAvg, meaning the model aggressively looked for teams whose Massey Ratings were much closer to elite tournament averages than their low seeds implied. Furthermore, AstTO_vs_TourneyAvg (Ball Security) and MasseyVariance scored highly, proving the model learned that extreme statistical variance and playmaking efficiency are required to pull off massive upsets.
+
+## 5. Final Takeaways
+
+Supervised machine learning struggles to successfully identify under-seeded tournament threats although it does better than random guessing. Our reframed approach—comparing underdog candidates directly against elite tournament averages—proved effective. This analysis confirms our research question: a Cinderella run is rarely a statistical accident; these teams possess distinct efficiency profiles (strong ball security, high rank variance, and powerhouse-level margins) that separate them from standard low-seeded teams before the tournament even begins.
