@@ -10,4 +10,4 @@ Our md and ipnyb notebook explores whether regular-season team performance, tour
 
 **Ethical & Legal Considerations:** To respect Kaggle’s competition rules, this repository does not redistribute the raw source files and instead assumes that users download the data themselves through Kaggle before running the analysis. From an ethics standpoint, the dataset contains team- and game-level sports records rather than personally identifying information, so privacy concerns are minimal. As a result, the main legal and ethical responsibility in this project is proper use of the competition data and transparent, reproducible analysis rather than protection of sensitive personal data
 
-## Supervised Modelling Choices
+## Supervised Modeling Choices
