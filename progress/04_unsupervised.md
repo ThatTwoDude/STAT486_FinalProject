@@ -22,7 +22,7 @@ While the Isolation Forest provided a gradient of "oddity" we utilized **Gaussia
 
   **Isolation Forest Results:** Successfully identified extreme outliers but showed that Cinderellas are largely indistinguishable from their peers based on broad anomaly scores alone.
   **GMM Clustering:** Attempted to group teams into profiles such as "Elite Powerhouses," "Erratic Underdogs," and "Stable Underdogs".
-  **Selection Logic:** The Isolation Forest was retained as the primary unsupervised tool because it was simpler. The additional complexity of the groupings in GMM Clustering didn't really help explain Cinderella behavior.
+  **Selection Logic:** Based upon the GAussian Mixture model, we found that by dividing teams into 4 distinct clusters, cinderella teams were properly identified to have traits similar to higher seeded teams. This made it effective in selection where Isolation struggled.
 
 ## 4 Explainability and Interpretability
 
@@ -45,9 +45,14 @@ While the Isolation Forest provided a gradient of "oddity" we utilized **Gaussia
 
   **Interpretation:** Even comparing after stratifying by seeds, you can see that there isn't a clear pattern for Cinderella type teams based upon Isolation score.
 
+![alt text](../assets/GMM_2.png)
+
+### GMM Cluster 2
+
+  **Interpretation:** The Gaussian Mixture Model was effectively able to show that most Cinderella's belonged to a certain archetype. Or rather, they often had stats similar to higher seeded teams. Which implied they were lower seeded than their stats would typically suggest.
 
 ## 5 Final Takeaways
 
-The unsupervised phase provided a crucial "reality check": a Cinderella run is rarely predicted by being a broad statistical outlier. Instead, these teams are characterized by their statistical "normalcy" and lack of erratic variance.
+The unsupervised phase showed that from a strict outlier perspective, a Cinderella run remains difficult to predict. According to our Isolation forest, these teams are characterized by their statistical "normalcy" and lack of erratic variance.
 
-While the Isolation Score wasn't overly effective at identification of Cinderella teams, it proved highly valuable insight toward why our supervised XGboost model was less effective than we had hoped. 
+However while the Isolation Forest found it difficult to separate Cinderella Teams, our Gausian Mixture Model was able to properly identify about 82% of historical Cinderella teams based upon their stat profiles.
