@@ -45,14 +45,6 @@ While the Isolation Forest provided a gradient of "oddity" we utilized **Gaussia
 
   **Interpretation:** Even comparing after stratifying by seeds, you can see that there isn't a clear pattern for Cinderella type teams based upon Isolation score.
 
-![alt text](../assets/GMM_0.png)
-
-![alt text](../assets/GMM_1.png)
-
-![alt text](../assets/GMM_2.png)
-
-![alt text](../assets/GMM_3.png)
-
 ### GMM Cluster 2
 
   **Interpretation:** The Gaussian Mixture Model was effectively able to show that most Cinderella's belonged to a certain archetype. Or rather, they often had stats similar to higher seeded teams. Which implied they were lower seeded than their stats would typically suggest.
