@@ -25,8 +25,33 @@ We hypothesize that an Anomaly Score—generated via unsupervised learning (Isol
 
 ## Main Results and Insights
 
+Our machine learning pipeline yielded three distinct phases of insights regarding the anatomy of NCAA upsets:
 
+**EDA Insights**
 
+* **The "Small Data" Reality:** True Cinderellas are incredibly rare. After definining a Cinderella as a 10+ seed that reaches the Sweet 16, we found only ~45 true Cinderellas in the modern tournament era. They represent a severe class imbalance
+
+* **The "Expectation Gap":** We suspected that Cinderellas rarely look like standard 12-seeds. Before the tournament even begins, we expected underlying metrics heavily over-performed in their assigned seed line. 
+
+**Supervised Modeling Results (XGBoost)**
+
+We compared a Random Forest Baseline against a heavily regularized XGBoost model built to handle small, imbalanced data.
+
+| **Model Type** | **Key Hyperparameters** | **Validation Setup** | **PR-AUC** |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| **Random Forest (Baseline) | `max_depth`: 5 <br> `n_estimators`: 100 <br> `class_weight`: 'balanced' | Stratified 5-Fold CV | 0.1177 |
+| **XGBoost Classifier | `max_depth`: 2 <br> `learning_rate`: 0.01 <br> `colsample_bytree`: 0.5 <br> `gamma`: 0.1 | Stratified 5-Fold CV | 0.1571 |
+
+* **Key Takeaway**: XGBoost successfully identified the majority of historical Cinderellas (XGBoost recall of 0.6679 compared to 0.2429 in Random Forest). Feature Importance and SHAP analysis revealed that `Rank_vs_tourneyAvg` and `SeedNum` were the primary drivers of predictions. The model ultimately learned to hunt for "Expectation Gaps"-attempting to flag low-seeded teams whose underlying regular-season efficiency metrics, like Massey Rank in Rank_vs_TourneyAvg, outpaced traditional expectations of their assigned low seed. 
+
+![alt text](/assets/shap_summary.png)
+
+**Unsupervised Modeling Results (Isolation Forest & GMM)**
+* **The Anomaly Myth:** Our Isolation Forest proved our initial hypothesis wrong—Cinderellas are not statistical anomalies. They fall squarely within standard anomaly distributions.
+
+* **The Archetype Confirmation:** However, our Gaussian Mixture Model (GMM) successfully grouped roughly 82% of historical Cinderellas into a single, specific archetype cluster. This proves Cinderellas don't rely on chaotic variance; they share a highly specific, repeatable baseline that mimics the statistical profile of higher-seeded teams.
+
+![alt text](/assets/GMM2.png)
 ---
 
 ## Data Sources and Usage Rights
