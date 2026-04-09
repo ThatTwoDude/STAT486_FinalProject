@@ -1,0 +1,26 @@
+# Data Manipulation & Math
+pandas
+numpy
+
+# Visualization
+matplotlib
+seaborn
+
+# Machine Learning Core
+scikit-learn
+xgboost
+
+# Explainability
+shap
+
+# Model Export/Import
+joblib
+
+# OS
+os
+
+# Dashboard App
+streamlit
+
+# Data Retrieval (From Deliverable 1)
+kaggle

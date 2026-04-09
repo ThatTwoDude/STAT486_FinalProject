@@ -22,7 +22,7 @@ While the Isolation Forest provided a gradient of "oddity" we utilized **Gaussia
 
   **Isolation Forest Results:** Successfully identified extreme outliers but showed that Cinderellas are largely indistinguishable from their peers based on broad anomaly scores alone.
   **GMM Clustering:** Attempted to group teams into profiles such as "Elite Powerhouses," "Erratic Underdogs," and "Stable Underdogs".
-  **Selection Logic:** Based upon the GAussian Mixture model, we found that by dividing teams into 4 distinct clusters, cinderella teams were properly identified to have traits similar to higher seeded teams. This made it effective in selection where Isolation struggled.
+  **Selection Logic:** Based upon the Gaussian Mixture model, we found that by dividing teams into 4 distinct clusters, cinderella teams were properly identified to have traits similar to higher seeded teams. This made it effective in selection where Isolation struggled.
 
 ## 4 Explainability and Interpretability
 
