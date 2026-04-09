@@ -39,8 +39,8 @@ We compared a Random Forest Baseline against a heavily regularized XGBoost model
 
 | **Model Type** | **Key Hyperparameters** | **Validation Setup** | **PR-AUC** |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| **Random Forest (Baseline) | `max_depth`: 5 <br> `n_estimators`: 100 <br> `class_weight`: 'balanced' | Stratified 5-Fold CV | 0.1177 |
-| **XGBoost Classifier | `max_depth`: 2 <br> `learning_rate`: 0.01 <br> `colsample_bytree`: 0.5 <br> `gamma`: 0.1 | Stratified 5-Fold CV | 0.1571 |
+| **Random Forest (Baseline)** | `max_depth`: 5 <br> `n_estimators`: 100 <br> `class_weight`: 'balanced' | Stratified 5-Fold CV | 0.1177 |
+| **XGBoost Classifier** | `max_depth`: 2 <br> `learning_rate`: 0.01 <br> `colsample_bytree`: 0.5 <br> `gamma`: 0.1 | Stratified 5-Fold CV | 0.1571 |
 
 * **Key Takeaway**: XGBoost successfully identified the majority of historical Cinderellas (XGBoost recall of 0.6679 compared to 0.2429 in Random Forest). Feature Importance and SHAP analysis revealed that `Rank_vs_tourneyAvg` and `SeedNum` were the primary drivers of predictions. The model ultimately learned to hunt for "Expectation Gaps"-attempting to flag low-seeded teams whose underlying regular-season efficiency metrics, like Massey Rank in Rank_vs_TourneyAvg, outpaced traditional expectations of their assigned low seed. 
 
