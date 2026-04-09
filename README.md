@@ -4,6 +4,7 @@
 
 **STAT 486 Final Project Proposal**
 **Authors:** Anton / Aaron / James
+**Live Interactive Dashboard:** [Online Streamilt App](https://stat486final.streamlit.app/)
 
 ---
 
@@ -19,6 +20,12 @@ Can unsupervised anomaly detection of regular-season advanced metrics successful
 
 ### Hypothesis
 We hypothesize that an Anomaly Score—generated via unsupervised learning (Isolation Forests or Gaussian Mixture Models) on regular-season metrics—will serve as a highly predictive feature for a supervised classification model (e.g., XGBoost, Logistic Regression). We expect models utilizing this integrated anomaly score to outperform models relying solely on standard matchup statistics and official seeding when predicting binary matchup outcomes (Win/Loss) for lower-seeded teams.
+
+---
+
+## Main Results and Insights
+
+
 
 ---
 
@@ -38,7 +45,17 @@ Per the Kaggle Competition Rules, this dataset is available for academic researc
 
 To reproduce our results, you must first pull the required data locally. 
 
-### 1. Data Retrieval Instructions
+### 1. Environment Setup
+
+Clone this repository and install the required dependencies using the `requirements.txt` file.
+
+```bash
+git clone git@github.com:ThatTwoDude/STAT486_FinalProject.git
+cd STAT486_FinalProject
+pip install -r requirements.txt
+```
+
+### 2. Data Retrieval Instructions
 
 1. Gaining Access to the Data
 You will need a Kaggle account in order to access the data. 
@@ -64,3 +81,21 @@ You will need a Kaggle account and an API token to download the data programmati
 `python download_data.py`
 
 * This will authenticate your Kaggle account, download the 2026 competition data, extract all CSVs into the `data/raw/` folder, and clean up the leftover zip file.
+
+### 3. Run the Jupyter Notebooks
+
+To strictly avoid data leakage and ensure proper preprocessing, the notebooks must be run in the following chronological order. *(Note: Restart the kernel and select "Run ALl" for each)*
+
+1. `EDA.ipynb`: Cleans the raw Kaggle data, merges game-by-game stats into team-season aggregates, and handles early exploratory analysis. Located in the `STAT486_FinalProject/data/`
+
+2. `03_supervised_modeling.ipynb`: Trains the baseline and XGBoost models, and exports the finalized `.pk1` models to the `/models` directory. Located in `STAT486_FinalProject/notebooks/`
+
+3. `04_unsupervised_modeling.ipynb`: Explores the statistical archetypes using Isolation Forests and Gaussian Mixture Models. Located in `STAT486_FinalProject/notebooks/`
+
+### 4. Run the Interactive Dashboard
+
+Once the notebooks have successfully exported the models to the `models/` directory, you can launch the local interactive application to test hypothetical teams or backtest historical seasons.
+
+```bash
+streamlit run app.py
+```
